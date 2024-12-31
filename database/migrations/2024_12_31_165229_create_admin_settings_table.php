@@ -11,9 +11,9 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('series', function (Blueprint $table) {
-            $table->id();
-            $table->string('name');
+        Schema::create('admin_settings', function (Blueprint $table) {
+            $table->foreignId('user_id')->constrained('users');
+            $table->string('setting_name');
             $table->timestamps();
         });
     }
@@ -23,6 +23,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('series');
+        Schema::dropIfExists('admin_settings');
     }
 };
