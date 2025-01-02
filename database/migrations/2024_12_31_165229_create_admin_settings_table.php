@@ -12,8 +12,9 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('admin_settings', function (Blueprint $table) {
-            $table->foreignId('user_id')->constrained('users');
+            $table->id();
             $table->string('setting_name');
+            $table->string('setting_value');
             $table->timestamps();
         });
     }

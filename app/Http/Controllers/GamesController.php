@@ -18,6 +18,13 @@ class GamesController extends Controller
     /**
      * Show the form for creating a new resource.
      */
+
+    public function search(Request $request)
+    {
+        //
+    }
+
+
     public function create()
     {
         //
