@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->date('release_date');
+            $table->foreignId('user_id')->constrained('users');
             $table->foreignId('category_id')->constrained('categories');
             $table->foreignId('series_id')->constrained('series');
             $table->timestamps();
