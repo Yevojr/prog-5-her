@@ -14,7 +14,7 @@
     <div class="home-explanation">
         <h2>How does it work?</h2>
         <br>
-        <h3>You can <a href="">add </a>and <a href="">view </a>games and all their information on here.</h3>
+        <h3>You can <a href="">add</a> and <a href="">view</a> games and all their information on here.</h3>
         <p>For a more detailed explanation, click <a href="{{route('explain')}}">here</a>!</p>
     </div>
 

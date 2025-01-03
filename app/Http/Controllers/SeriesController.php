@@ -12,7 +12,8 @@ class SeriesController extends Controller
      */
     public function index()
     {
-        //
+        $series = Series::all();
+        return view('series.index', compact('series'));
     }
 
     /**
