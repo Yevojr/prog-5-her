@@ -71,7 +71,7 @@ class GamesController extends Controller
 
         $game = new Game();
         $game->name = $request->input('name');
-        $game->release_date = $request->input('release_date');
+        $game->release_date = \Carbon\Carbon::createFromFormat('d-m-Y',$request->input('release_date'))->format('Y-m-d');
         $game->category_id = $request->input('category_id');
         $game->series_id = $request->input('series_id');
         $game->user_id = auth()->user->id();
