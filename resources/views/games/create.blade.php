@@ -11,7 +11,7 @@
 
     <form action="{{route('games.store')}}" method="POST" class="games-form" enctype="multipart/form-data">
         @csrf
-        @include('partials._game-form', ['game' => null, 'genres' => $categories])
+        @include('games._game-form', ['game' => null, 'genres' => $categories])
 
 
         <div class="form-div-btn">

@@ -21,7 +21,9 @@ class SeriesController extends Controller
      */
     public function create()
     {
-        //
+        $series = Series::all();
+        $user = auth()->user();
+        return view('series.create', compact('series'));
     }
 
     /**
@@ -29,38 +31,58 @@ class SeriesController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'name' => 'required|string|max:255',
+        ], [
+            'name.required' => 'Please enter a series name',
+        ]);
+
+        $serie = new Series();
+        $serie->name = $request->input('name');
+        $serie->save();
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(Series $series)
+    public function show(string $id)
     {
-        //
+        $serie = Series::findOrFail($id);
+        return view('series.show', compact('serie'));
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Series $series)
+    public function edit(string $id)
     {
-        //
+        $serie = Series::findOrFail($id);
+        return view('series.edit', compact('serie'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Series $series)
+    public function update(Request $request, string $id)
     {
-        //
+        $serie = Series::findOrFail($id);
+        $request->validate([
+            'name' => 'required|string|max:255',
+        ], [
+            'name.required' => 'Please enter a series name',
+        ]);
+        $serie->update($request->all());
+        return redirect()->route('series.index');
+
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Series $series)
+    public function destroy(string $id)
     {
-        //
+        $serie = Series::findOrFail($id);
+        $serie->delete();
+        return redirect()->route('series.index');
     }
 }

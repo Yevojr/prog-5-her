@@ -35,7 +35,7 @@ class GamesController extends Controller
                 $query->where('name', 'LIKE', "%{$search}%")
                     ->orWhere('release_date', 'LIKE', "%{$search}%");
             })->get();
-        return view('games.index', compact('games', 'category'));
+        return view('games.search', compact('games', 'category'));
     }
 
     /**

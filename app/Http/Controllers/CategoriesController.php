@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Categories;
 use App\Models\Category;
 use Illuminate\Http\Request;
 
@@ -13,7 +12,7 @@ class CategoriesController extends Controller
      */
     public function index()
     {
-        $categories = Categories::all();
+        $categories = Category::all();
         return view('categories.index', compact('categories'));
     }
 
@@ -33,12 +32,12 @@ class CategoriesController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'name' => 'required',
+            'name' => 'required|string|max:255',
         ], [
             'name.required' => 'Please enter genre name',
         ]);
         $category = new Category();
-        $category->name = request('name');
+        $category->name = $request->input('name');
         $category->save();
     }
 
@@ -63,16 +62,17 @@ class CategoriesController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Categories $categories)
+    public function update(Request $request, string $id)
     {
+        $category = Category::findOrFail($id);
         $request->validate([
             'name' => 'required',
         ], [
             'name.required' => 'Please enter genre name',
         ]);
-        $category = new Category();
-        $category->name = request('name');
-        $category->update();
+        $category->update($request->all());
+        return redirect()->route('categories.index');
+
     }
 
     /**
