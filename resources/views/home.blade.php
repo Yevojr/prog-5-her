@@ -12,9 +12,9 @@
     </div>
 
     <div class="home-explanation">
-        <h2>How does it work?</h2>
+        <h2>Have fun viewing all the games on the list!</h2>
         <br>
-        <h3>You can <a href="">add</a> and <a href="">view</a> games and all their information on here.</h3>
+        <h3><a href="{{route('games.index')}}">View</a> game list here.</h3>
     </div>
 
 </x-base-layout>

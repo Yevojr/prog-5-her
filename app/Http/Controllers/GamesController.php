@@ -15,23 +15,35 @@ class GamesController extends Controller
     public function index()
     {
 
-        $games = Game::with('series')->get();
-        $categories = Category::all();
+        $games = Game::with('series')
+            ->where('visibility', true)
+            ->get();
+        $series = Series::all();
 
-        return view('games.index', compact('games', 'categories'));
+        return view('games.index', compact('games', 'series'));
     }
 
     public function search(Request $request)
     {
-        $search = $request->input('search');
-        $category = $request->input('category');
+        $searchText = $request->input('query');
+        $seriesId = $request->input('series_id');
 
-        $games = Game::where('category_id', $category)
-            ->where(function ($query) use ($search) {
-                $query->where('name', 'LIKE', "%{$search}%")
-                    ->orWhere('release_date', 'LIKE', "%{$search}%");
-            })->get();
-        return view('games.search', compact('games', 'category'));
+        $games = Game::query();
+
+        if($searchText) {
+            $games->where(function ($query) use ($searchText) {
+               $query->where('name', 'LIKE', '%' . $searchText . '%');
+            });
+        }
+
+        if($seriesId) {
+            $games->where('series_id', $seriesId);
+        }
+
+        $games = $games->get();
+        $series = Series::all();
+        return view('games.index', compact('games', 'series'));
+
     }
 
     /**
@@ -147,8 +159,13 @@ class GamesController extends Controller
      */
     public function destroy(string $id)
     {
+        if(!auth()->check() || !auth()->user()->is_admin){
+
+            return redirect()->route('/')->with('error', 'Unauthorised user');
+        }
+
         $game = Game::findOrFail($id);
         $game->delete();
-        return redirect()->route('games.index');
+        return redirect()->route('admin.index')->with('success', 'Game deleted successfully.');
     }
 }

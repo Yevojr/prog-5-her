@@ -24,6 +24,7 @@
     @if(auth()->check() && auth()->user()->is_admin)
         <a href="{{route('categories.create',['userId' => $user ?? auth()->id() ?? 0])}}">Add Category</a>
         <a href="{{route('series.create',['userId' => $user ?? auth()->id() ?? 0])}}">Add Series</a>
+        <a href="{{route('admin.index')}}">Manage lists</a>
 
     @endif
 

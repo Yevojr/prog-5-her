@@ -81,8 +81,13 @@ class CategoriesController extends Controller
      */
     public function destroy(string $id)
     {
+        if(!auth()->check() || !auth()->user()->is_admin){
+
+            return redirect()->route('/')->with('error', 'Unauthorised user');
+        }
+
         $category = Category::findOrFail($id);
         $category->delete();
-        return redirect()->route('categories.index')->with('success', 'Category deleted successfully');
+        return redirect()->route('admin.index')->with('success', 'Category deleted successfully');
     }
 }

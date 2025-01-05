@@ -24,6 +24,18 @@ class Game extends Model
     }
 
     protected $fillable = [
-      'name', 'release_date', 'category_id', 'series_id', 'user_id', 'image'
+      'name',
+      'release_date',
+      'category_id',
+      'series_id',
+      'user_id',
+      'image',
+      'visibility'
     ];
+
+    protected $casts = [
+        'visibility' => 'boolean'
+    ];
+
+    protected $guarded = [];
 }

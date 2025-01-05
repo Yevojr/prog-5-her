@@ -83,8 +83,13 @@ class SeriesController extends Controller
      */
     public function destroy(string $id)
     {
+        if(!auth()->check() || !auth()->user()->is_admin){
+
+            return redirect()->route('/')->with('error', 'Unauthorised user');
+        }
+
         $serie = Series::findOrFail($id);
         $serie->delete();
-        return redirect()->route('series.index');
+        return redirect()->route('admin.index')->with('success', 'Series deleted successfully');
     }
 }

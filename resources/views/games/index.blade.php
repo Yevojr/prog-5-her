@@ -11,6 +11,21 @@
 
     <h1>List of Games</h1>
 
+    <form action="{{route('games.search')}}" method="GET">
+        @csrf
+        <input type="text" name="query" placeholder="Search...">
+        <select name="series_id">
+            <option value="">Choose Series</option>
+            @foreach($series as $serie)
+                <option value="{{$serie->id}}">{{$serie->name}}</option>
+            @endforeach
+        </select>
+        <button type="submit">Search</button>
+
+
+    </form>
+
+
     <div class="games-list">
         @foreach($games as $game)
             <h2>{{$game->name}}</h2>
