@@ -39,6 +39,7 @@ class CategoriesController extends Controller
         $category = new Category();
         $category->name = $request->input('name');
         $category->save();
+        return redirect()->route('categories.index')->with('success', 'Category created successfully');
     }
 
     /**
@@ -71,7 +72,7 @@ class CategoriesController extends Controller
             'name.required' => 'Please enter genre name',
         ]);
         $category->update($request->all());
-        return redirect()->route('categories.index');
+        return redirect()->route('categories.index')->with('success', 'Category updated successfully');
 
     }
 
@@ -82,6 +83,6 @@ class CategoriesController extends Controller
     {
         $category = Category::findOrFail($id);
         $category->delete();
-        return redirect()->route('categories.index');
+        return redirect()->route('categories.index')->with('success', 'Category deleted successfully');
     }
 }

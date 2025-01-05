@@ -23,4 +23,7 @@ class Game extends Model
         return $this->belongsTo(User::class, 'user_id');
     }
 
+    protected $fillable = [
+      'name', 'release_date', 'category_id', 'series_id', 'user_id', 'image'
+    ];
 }

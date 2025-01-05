@@ -40,6 +40,8 @@ class SeriesController extends Controller
         $serie = new Series();
         $serie->name = $request->input('name');
         $serie->save();
+
+        return redirect()->route('series.index')->with('success', 'Series created!');
     }
 
     /**

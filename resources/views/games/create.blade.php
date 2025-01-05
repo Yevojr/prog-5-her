@@ -9,13 +9,13 @@
 
     </x-slot>
 
-    <form action="{{route('games.store')}}" method="POST" class="games-form" enctype="multipart/form-data">
+    <form action="{{route('games.store')}}" method="POST" class="form" enctype="multipart/form-data">
         @csrf
-        @include('games._game-form', ['game' => null, 'genres' => $categories])
+        @include('games._game-form')
 
 
         <div class="form-div-btn">
-            <a href="{{route(' games.index')}}">Return to list</a>
+            <a href="{{route('games.index')}}">Return to list</a>
             <button type="submit" class="btn">Add game</button>
         </div>
     </form>

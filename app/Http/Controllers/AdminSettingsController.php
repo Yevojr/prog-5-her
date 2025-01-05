@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\AdminSettings;
+use App\Models\Game;
 use Illuminate\Http\Request;
 
 class AdminSettingsController extends Controller
@@ -12,7 +13,13 @@ class AdminSettingsController extends Controller
      */
     public function index()
     {
-        //
+        if (!auth()->user() && !auth()->user()->is_admin)
+        {
+            return redirect('/')->with('error', 'Unauthorised user');
+        }
+        $game = Game::all();
+        return view('admin.index', compact('game'));
+
     }
 
     /**

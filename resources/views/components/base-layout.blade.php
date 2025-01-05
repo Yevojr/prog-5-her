@@ -17,6 +17,7 @@
     @if(auth()->check())
         <a href="{{route('games.create',['userId' => $user ?? auth()->id() ?? 0])}}">Add game</a>
     @endif
+    <a href="{{route('games.index')}}">Games list</a>
     <a href="{{route('categories.index')}}">Categories list</a>
     <a href="{{route('series.index')}}">Series list</a>
 

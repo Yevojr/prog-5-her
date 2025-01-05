@@ -17,8 +17,14 @@
             <a href="_{{route('categories.show', $category->id)}}">
                 <h3>{{$category->name}}</h3>
             </a>
+            <button class="btn">Delete</button>
         @endforeach
     </div>
+    @if(auth()->check() && auth()->user()->is_admin)
+        <a href="{{route('categories.create', ['userId' => $user ?? auth()->id() ?? 0])}}">Add a new category</a>
+
+    @endif
+
 
 </x-base-layout>
 

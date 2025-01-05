@@ -29,9 +29,9 @@
 </div>
 
 <div class="form-div-select">
-    <label for="category" class="form-label">Game genre</label>
+    <label for="category_id" class="form-label">Game genre</label>
     <div class="form-error">
-        <select name="category" id="category" class="form-select">
+        <select name="category_id" id="category_id" class="form-select">
             @foreach($categories as $category)
                 <option value="{{$category->id}}" {{old('category_id', $game->category_id ?? '')}}>
                     {{$category->name}}
@@ -47,9 +47,9 @@
 </div>
 
 <div class="form-div-select">
-    <label for="series" class="form-label">Game genre</label>
+    <label for="series_id" class="form-label">Series</label>
     <div class="form-error">
-        <select name="series" id="series" class="form-select">
+        <select name="series_id" id="series_id" class="form-select">
             @foreach($series as $franchise)
                 <option value="{{$franchise->id}}" {{old('series_id', $game->series_id ?? '')}}>
                     {{$franchise->name}}
