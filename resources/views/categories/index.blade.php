@@ -14,10 +14,9 @@
     <div class="category-list">
 
         @foreach($categories as $category)
-            <a href="_{{route('categories.show', $category->id)}}">
+            <a href="{{route('games.index')}}">
                 <h3>{{$category->name}}</h3>
             </a>
-            <button class="btn">Delete</button>
         @endforeach
     </div>
     @if(auth()->check() && auth()->user()->is_admin)

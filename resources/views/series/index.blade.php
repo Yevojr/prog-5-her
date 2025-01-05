@@ -15,7 +15,7 @@
     <div class="category-list">
 
         @foreach($series as $serie)
-            <a href="_{{route('categories.show', $serie->id)}}">
+            <a href="{{route('games.index')}}">
                 <h3>{{$serie->name}}</h3>
             </a>
         @endforeach
