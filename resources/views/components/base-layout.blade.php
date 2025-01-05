@@ -13,11 +13,19 @@
 <body>
 
 <nav class="navbar">
+    <a href="{{route('home')}}">Home</a>
     @if(auth()->check())
         <a href="{{route('games.create',['userId' => $user ?? auth()->id() ?? 0])}}">Add game</a>
     @endif
     <a href="{{route('categories.index')}}">Categories list</a>
     <a href="{{route('series.index')}}">Series list</a>
+
+    @if(auth()->check() && auth()->user()->is_admin)
+        <a href="{{route('categories.create',['userId' => $user ?? auth()->id() ?? 0])}}">Add Category</a>
+        <a href="{{route('series.create',['userId' => $user ?? auth()->id() ?? 0])}}">Add Series</a>
+
+    @endif
+
     @if(Auth::check())
             <a href="{{route('dashboard')}}">Dashboard</a>
     @else

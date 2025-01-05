@@ -83,7 +83,7 @@ class GamesController extends Controller
         }
         $game->save();
 
-        return redirect()->route('games.index');
+        return redirect()->route('games.index')->with('success', 'Game created successfully.');
 
     }
 
@@ -130,6 +130,18 @@ class GamesController extends Controller
         $game->update($request->all());
 
         return redirect()->route('games.index');
+    }
+
+    public function visibility($id)
+    {
+        $game = Game::findOrFail($id);
+        if ($game){
+            $game->visibility = !$game->visibility;
+            $game->save();
+
+            return redirect()->back()->with('success', 'Game visibility updated successfully.');
+        }
+        return redirect()->back()->with('fail', 'Game not found.');
     }
 
     /**

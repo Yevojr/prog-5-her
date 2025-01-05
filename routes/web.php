@@ -56,4 +56,7 @@ Route::get('/series/{series}/edit', [SeriesController::class, 'edit'])->name('se
 Route::put('/series/{series}', [SeriesController::class, 'update'])->name('series.update')->middleware('auth');
 Route::delete('/series/{series}', [SeriesController::class, 'destroy'])->name('series.destroy')->middleware('auth');
 
+//admin routes
+
+
 require __DIR__.'/auth.php';
