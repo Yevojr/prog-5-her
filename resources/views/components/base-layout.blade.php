@@ -13,7 +13,16 @@
 <body>
 
 <nav class="navbar">
-
+    @if(auth()->check())
+        <a href="{{route('games.create',['userId' => $user ?? auth()->id() ?? 0])}}">Add game</a>
+    @endif
+    <a href="{{route('categories.index')}}">Categories list</a>
+    <a href="{{route('series.index')}}">Series list</a>
+    @if(Auth::check())
+            <a href="{{route('dashboard')}}">Dashboard</a>
+    @else
+            <a href="{{route('login')}}">Login</a>
+    @endif
 </nav>
 
 
@@ -22,14 +31,7 @@
 </main>
 
 <footer>
-    <div>
-        <h4>Quick nav:</h4>
-        <ul>
-            <li><a href="">Add game</a></li>
-            <li><a href="">Categories list</a></li>
-            <li><a href="">Series list</a></li>
-        </ul>
-    </div>
+
     <div>
         <h4>Contact</h4>
         <ul>
