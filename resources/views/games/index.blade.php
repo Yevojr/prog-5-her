@@ -15,6 +15,7 @@
         @foreach($games as $game)
             <h2>{{$game->name}}</h2>
             <img src="{{asset('storage/' . $game->image)}}" alt="{{$game->name}}">
+            <h3>Series: {{$game->series->name}}</h3>
             <a class="game-details" href="{{route('games.show', ['id' => $game->id])}}">Detailed view</a>
         @endforeach
     </div>

@@ -9,9 +9,9 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 class Series extends Model
 {
 
-    public function games() : BelongsToMany
+    public function games() : HasMany
     {
-        return $this->belongsToMany(Game::class, 'game_id');
+        return $this->hasMany(Game::class, 'game_id');
     }
 
 }

@@ -15,9 +15,10 @@ class GamesController extends Controller
     public function index()
     {
 
-        $games = Game::all();
+        $games = Game::with('series')->get();
+        $categories = Category::all();
 
-        return view('games.index', compact('games'));
+        return view('games.index', compact('games', 'categories'));
     }
 
     public function search(Request $request)

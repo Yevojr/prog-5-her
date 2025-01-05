@@ -13,9 +13,9 @@ class Game extends Model
         return $this->hasMany(Category::class, 'category_id');
     }
 
-    public function series() : HasMany
+    public function series() : BelongsTo
     {
-        return $this->hasMany(Series::class, 'series_id');
+        return $this->belongsTo(Series::class, 'series_id');
     }
 
     public function users(): BelongsTo
